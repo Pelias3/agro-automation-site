@@ -1,8 +1,8 @@
 backend:
   name: github
-  repo: твой-логин/название-репозитория # Путь к репозиторию на GitHub
+  repo: Pelias3/agro-automation-site # Путь к репозиторию на GitHub
   branch: main
-  base_url: https://your-oauth-proxy.com # Ссылка на прокси (разберем ниже)
+  base_url: https://netlify-cms-github-oauth-provider-lilac.vercel.app/
 
 media_folder: "public/assets/blog" # куда сохранять картинки
 public_folder: "/assets/blog"
