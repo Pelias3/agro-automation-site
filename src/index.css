@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Agro-tech green palette */
+    --background: 155 25% 5%;
+    --foreground: 90 20% 96%;
+
+    --card: 155 18% 9%;
+    --card-foreground: 90 20% 96%;
+
+    --popover: 155 18% 9%;
+    --popover-foreground: 90 20% 96%;
+
+    /* Vivid green accent */
+    --primary: 142 55% 45%;
+    --primary-foreground: 155 25% 5%;
+
+    --secondary: 155 15% 13%;
+    --secondary-foreground: 90 20% 90%;
+
+    --muted: 155 12% 15%;
+    --muted-foreground: 145 10% 52%;
+
+    --accent: 142 55% 45%;
+    --accent-foreground: 155 25% 5%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 90 20% 96%;
+
+    --border: 150 12% 17%;
+    --input: 150 12% 17%;
+    --ring: 142 55% 45%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --graphite: 155 18% 8%;
+    --charcoal: 155 12% 14%;
+    --warm-white: 90 25% 97%;
+    --amber: 142 55% 45%;
+    --amber-glow: 142 65% 38%;
+    --green-bright: 142 70% 50%;
+    --green-soft: 145 40% 65%;
+
+    /* Gradients */
+    --gradient-dark: linear-gradient(135deg, hsl(155 25% 5%) 0%, hsl(155 18% 9%) 50%, hsl(155 22% 6%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(155 18% 11%) 0%, hsl(155 18% 8%) 100%);
+    --gradient-amber-glow: radial-gradient(circle at center, hsl(142 55% 45% / 0.15) 0%, transparent 70%);
+    --gradient-green-hero: linear-gradient(180deg, hsl(142 55% 45% / 0.08) 0%, transparent 60%);
+
+    --sidebar-background: 155 18% 8%;
+    --sidebar-foreground: 90 20% 90%;
+    --sidebar-primary: 142 55% 45%;
+    --sidebar-primary-foreground: 155 25% 5%;
+    --sidebar-accent: 155 15% 13%;
+    --sidebar-accent-foreground: 90 20% 90%;
+    --sidebar-border: 150 12% 17%;
+    --sidebar-ring: 142 55% 45%;
+  }
+
+  .light-section {
+    --background: 80 20% 97%;
+    --foreground: 150 15% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 150 15% 12%;
+    --muted: 80 10% 93%;
+    --muted-foreground: 150 8% 40%;
+    --border: 80 10% 87%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+@layer components {
+  .container-narrow {
+    @apply max-w-5xl mx-auto px-6 md:px-8;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-dark-bg {
+    background: var(--gradient-dark);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .amber-glow {
+    box-shadow: 0 0 60px -10px hsl(142 55% 45% / 0.35);
+  }
+
+  .green-glow-soft {
+    box-shadow: 0 0 80px -15px hsl(142 70% 50% / 0.2);
+  }
+
+  .green-pulse-dot {
+    @apply w-2 h-2 rounded-full bg-primary;
+    box-shadow: 0 0 8px 2px hsl(142 55% 45% / 0.5);
+  }
+
+  .subtle-border {
+    @apply border border-border/50;
+  }
+}
+
+@layer utilities {
+  .animate-slow-pulse {
+    animation: slow-pulse 8s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.6s ease-out forwards;
+  }
+
+  @keyframes slow-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
