@@ -1,7 +1,7 @@
 name: Deploy to Sweb
 on:
   push:
-    branches: [ main ] # или master, смотря какая у тебя главная
+    branches: [ main ]
 
 jobs:
   build-and-deploy:
@@ -10,10 +10,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
       - name: Install and Build
         run: |
-          npm install
-          npm run build
+          bun install
+          bun run build
 
       - name: Deploy to Server via SCP
         uses: appleboy/scp-action@master
@@ -22,6 +27,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: 22
-          source: "build/*"
-          target: "public_html/" # Уточни путь к папке сайта на Sweb
+          source: "dist/*" # В Bun/Vite папка сборки часто называется dist, а не build. Проверь это!
+          target: "public_html/"
           strip_components: 1
