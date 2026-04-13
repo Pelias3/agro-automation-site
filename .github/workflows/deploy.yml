@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # Обновили до v4
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@v2 # Обновили до v2
         with:
           bun-version: latest
 
@@ -27,6 +27,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: 22
-          source: "dist/*" # В Bun/Vite папка сборки часто называется dist, а не build. Проверь это!
-          target: "public_html/"
+          source: "dist/*" # Для Vite/Bun почти всегда dist. Если не сработает — проверь package.json
+          target: "agroautomation.online/public_html/" # Указываем путь точнее
           strip_components: 1
