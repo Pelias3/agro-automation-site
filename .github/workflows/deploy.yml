@@ -1,0 +1,27 @@
+name: Deploy to Sweb
+on:
+  push:
+    branches: [ main ] # или master, смотря какая у тебя главная
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy to Server via SCP
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          source: "build/*"
+          target: "public_html/" # Уточни путь к папке сайта на Sweb
+          strip_components: 1
