@@ -1,17 +1,17 @@
 name: Deploy to Sweb
 on:
   push:
-    branches: [ main ]
+    branches: [ main ] # Убедись, что твоя ветка называется main, а не master
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 # Обновили до v4
+        uses: actions/checkout@v4
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v2 # Обновили до v2
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
@@ -25,8 +25,8 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: 2222
-          source: "dist/*" # Для Vite/Bun почти всегда dist. Если не сработает — проверь package.json
-          target: "agroautomation.online/public_html/" # Указываем путь точнее
+          key: ${{ secrets.SSH_KEY }} # Используем ключ вместо пароля
+          port: 22
+          source: "dist/*" # Папка, куда Bun/Vite собирает проект
+          target: "/home/d/dreshka324/agroautomation.online/public_html/" # Полный путь на Sweb
           strip_components: 1
